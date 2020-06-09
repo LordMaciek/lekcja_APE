@@ -5,4 +5,9 @@
 {% block content %}
   <h1>Zarejestruj się!</h1>
   <p>Wpisz dane użytkownika korzystając z podanego formluarza:</p>
-    
+  <form method='post'>
+    {{ user_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Zarejestruj!"></p>
+  </form>
+{% endblock %}
