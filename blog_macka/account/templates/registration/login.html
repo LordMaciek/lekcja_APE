@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Strona logowania{% endblock %}
+
+{%block content %}
+  <h1>Logownie</h1>
+  {% if form.errors %}
+    <p>Błąd w nazwie i/lub haśle. Spróbuj ponownie!</p>
+  {% else %}
+    <p>Wpisz dane logowania. Jeśli nie masz konta, nie możesz się
+      zarejestrować.</p>
+  {% endif %}
+  <div class="login-form">
+    <form action="{% url 'login' %}" method='post'>
+      {{ form.as_p }}
+      {% csrf_token %}
+      <input type='hidden' name='dalej' value="{{ next }}" />
+      <p><input type='submit' value='zaloguj'></p>
+    </form>
+  </div>
+{% endblock %}
