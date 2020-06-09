@@ -20,3 +20,25 @@ def register(request):
         user_form = UserRegistrationForm()
     return render(request, 'account/register.html',
                   {"user_form": user_form})
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(request,
+                                username=cd['username'],
+                                password=cd['password'])
+            if user is not None:
+                login(request, user)
+                return render(request, 'account/login_success.html',
+                              {'form': form})
+            else:
+                return HttpResponse('Konto nieaktywne!')
+        else:
+            return HttpResponse("Złe dane logowania")
+    else:
+        form = LoginForm()
+        return render(request, 'account/login.html',
+                      {'form': form})

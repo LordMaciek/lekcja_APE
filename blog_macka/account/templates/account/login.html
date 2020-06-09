@@ -7,8 +7,8 @@
   {% if form.errors %}
     <p>Błąd w nazwie i/lub haśle. Spróbuj ponownie!</p>
   {% else %}
-    <p>Wpisz dane logowania. Jeśli nie masz konta, nie możesz się
-      zarejestrować.</p>
+    <p>Wpisz dane logowania. Jeśli nie masz konta, możesz
+    <a href="{% url 'register'%}">zarejestrować się</a>.</p>
   {% endif %}
   <div class="login-form">
     <form action="{% url 'login' %}" method='post'>
@@ -17,5 +17,6 @@
       <input type='hidden' name='dalej' value="{{ next }}" />
       <p><input type='submit' value='zaloguj'></p>
     </form>
+  <p>Zapomniane hasło? <a href="{% url 'password_reset' %}">Zamów nowe!</a></p>
   </div>
 {% endblock %}

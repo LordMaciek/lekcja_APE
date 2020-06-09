@@ -8,6 +8,14 @@
   <body>
     <div id="header">
       <span class="logo">Blog Maćka</span>
+      <span class="user">
+        {% if request.user.is_authenticated %}
+          Cześć, {{ request.user.first_name }}! |
+          <a href="{% url 'logout' %}">Wyloguj</a>
+        {% else %}
+          <a href="{% url 'login' %}">Logowanie</a>
+        {% endif %}
+      </span>
     </div>
     <div id="content">
       {% block content %}

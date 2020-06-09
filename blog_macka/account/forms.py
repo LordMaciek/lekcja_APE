@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(label='Nazwa użytkownika')
+    password = forms.CharField(widget=forms.PasswordInput, label="Hasło")
 
 
 class UserRegistrationForm(forms.ModelForm):
@@ -17,7 +17,7 @@ class UserRegistrationForm(forms.ModelForm):
         model = User
         fields = ('username', 'first_name', 'email')
 
-    def clean_password(self):
+    def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Hasła nie pokrywają się!')
