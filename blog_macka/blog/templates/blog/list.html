@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Pierwszy blog Maćka{% endblock %}
+
+{% block content %}
+  <h1>Wpisy na temat różynch rzeczy</h1>
+  {% for post in posts %}
+    <h2>
+      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+    </h2>
+  {% empty %}
+  <h2>Na razie nic nie mam do powiedzenia :( </h2>
+  {% endfor %}
+{% endblock %}
