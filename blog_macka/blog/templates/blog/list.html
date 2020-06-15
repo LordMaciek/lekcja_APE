@@ -8,6 +8,8 @@
     <h2>
       <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
     </h2>
+    <p class="date">{{ post.author }}{{ post.created }}</p>
+    {{ post.body|truncatewords:30|linebreaks }}
   {% empty %}
   <h2>Na razie nic nie mam do powiedzenia :( </h2>
   {% endfor %}

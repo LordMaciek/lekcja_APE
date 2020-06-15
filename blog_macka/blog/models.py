@@ -1,15 +1,17 @@
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
 from django.urls import reverse
+
 
 # Create your models here.
 
 
 class BlogEntry(models.Model):
     title = models.CharField(max_length=250)
-    slug = models.SlugField(max_length=250)
-    author = models.ForeignKey(User,
+    slug = models.SlugField(default='',
+                            editable=False,
+                            max_length=250)
+    author = models.ForeignKey('auth.User',
                                on_delete=models.CASCADE,
                                related_name='blog_posts')
     body = models.TextField()
@@ -24,4 +26,8 @@ class BlogEntry(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('blog:post_entry', args=[self.slug])
+        kwargs = {
+            'pk': self.id,
+            'slug': self.slug
+        }
+        return reverse('blog:post_entry', kwargs=kwargs)
