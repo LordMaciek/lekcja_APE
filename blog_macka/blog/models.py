@@ -1,9 +1,14 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.conf import settings
 
 
 # Create your models here.
+class Picture(models.Model):
+    title = models.CharField(max_length=250)
+    author = models.CharField(max_length=150, blank=True)
+    pic = models.ImageField(upload_to='imgs/', blank=True)
 
 
 class BlogEntry(models.Model):
@@ -18,6 +23,7 @@ class BlogEntry(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    pictures = models.ManyToManyField(Picture)
 
     class Meta:
         ordering = ('-publish',)

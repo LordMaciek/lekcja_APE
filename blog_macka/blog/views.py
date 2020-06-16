@@ -3,9 +3,8 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
-
-from .models import BlogEntry
-from .forms import CreateNewPost
+from .models import BlogEntry, Picture
+from .forms import CreateNewPost, PhotoAddForm
 
 # Create your views here.
 
@@ -29,6 +28,13 @@ class PostEntry(DetailView):
 #                   {'post': post})
 
 
+def pic_list(request):
+    pictures = Picture.objects.all()
+    return render(request,
+                  'blog/pic_list.html',
+                  {'pictures': pictures})
+
+
 @login_required
 def create_post(request):
     if request.method == 'POST':
@@ -44,4 +50,16 @@ def create_post(request):
     else:
         form = CreateNewPost()
     return render(request, 'blog/create_post.html',
-                  {'form': form})
+                  {'form': form,
+                   })
+
+
+@login_required
+def create_pic(request):
+    if request.method == 'POST':
+        form = PhotoAddForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, 'blog/create_pic.html',
+                          {'form': form,
+                           })

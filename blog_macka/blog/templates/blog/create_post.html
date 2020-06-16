@@ -6,6 +6,7 @@
   <h1>Dodaj nowy wpis do Twojego bloga!</h1>
   <form method="post" class="form-group">
     {{ form.as_p }}
+    {{ pic_form.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Dodaj wpis" class="btn btn-success"></p>
   </form>
