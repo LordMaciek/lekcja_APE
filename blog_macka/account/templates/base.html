@@ -10,7 +10,7 @@
   </head>
   <body>
     <div id="header">
-      <span class="logo">Blog Maćka</span>
+      <span class="logo"><a href="{% url 'blog:post_list' %}">Blog Maćka</a></span>
       <a href="{% url 'blog:pic_list' %}">Galeria fot!</a>
       <span class="user">
         {% if request.user.is_authenticated %}

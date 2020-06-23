@@ -7,4 +7,13 @@
   {{ object.publish }} : {{ object.author.first_name }}
   <br />
   {{ object.body }}
+    <div>
+    MAIN PICTURE <img src="{{ main_picture.pic.url }}" alt="">
+        {% for pictur in other_pix %}
+            <h2>{{ pictur.title }}</h2><br />
+            <img src = "{{ pictur.pic.url }}" width=640 height=480/>
+        {% empty %}
+            <p>GOWNO</p>
+        {% endfor %}
+    </div>
 {% endblock %}

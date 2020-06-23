@@ -10,6 +10,9 @@
     </h2>
     <p class="date">{{ post.author.first_name }} : {{ post.created }}</p>
     {{ post.body|truncatewords:30|linebreaks }}
+    {%  if post.main_picture %}
+        <img src="{{ post.main_picture.pic.url }}"/>
+    {% endif %}
   {% empty %}
   <h2>Na razie nic nie mam do powiedzenia :( </h2>
   {% endfor %}

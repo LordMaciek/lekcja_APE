@@ -10,6 +10,9 @@ class Picture(models.Model):
     author = models.CharField(max_length=150, blank=True)
     pic = models.ImageField(upload_to='imgs/')
 
+    def __str__(self):
+        return self.title
+
 
 class BlogEntry(models.Model):
     title = models.CharField(max_length=250)
@@ -37,3 +40,8 @@ class BlogEntry(models.Model):
             'slug': self.slug
         }
         return reverse('blog:post_entry', kwargs=kwargs)
+
+    @property
+    def main_picture(self):
+        if self.pictures.exists():
+            return self.pictures.all()[0]

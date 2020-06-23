@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.utils.text import slugify
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
 from .models import BlogEntry, Picture
 from .forms import CreateNewPost, PhotoAddForm
@@ -20,6 +21,12 @@ class PostEntry(DetailView):
     model = BlogEntry
     query_pk_and_slug = True
     template_name = 'blog/entry.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['main_picture'] = ctx.get('object').pictures.all()[0]
+        ctx['other_pix'] = ctx.get('object').pictures.all()[1:]
+        return ctx
 
 # def post_entry(request, post):
 #     post = get_object_or_404(BlogEntry)
@@ -46,6 +53,7 @@ def create_post(request):
             value = post.title
             post.slug = slugify(value, allow_unicode=False)
             post.save()
+            form.save_m2m()
             return redirect('blog:post_entry', pk=post.pk, slug=post.slug)
     else:
         form = CreateNewPost()

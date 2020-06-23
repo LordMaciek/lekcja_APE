@@ -6,7 +6,7 @@ class CreateNewPost(forms.ModelForm):
 
     class Meta:
         model = BlogEntry
-        fields = ('title', 'body',)
+        fields = ('title', 'body', 'pictures', )
 
 
 class PhotoAddForm(forms.ModelForm):
