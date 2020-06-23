@@ -10,10 +10,10 @@ class CreateNewPost(forms.ModelForm):
 
 
 class PhotoAddForm(forms.ModelForm):
-    entry = forms.ModelChoiceField(
-        queryset=BlogEntry.objects.all(),
-        widget=forms.HiddenInput(),
-    )
+    # entry = forms.ModelChoiceField(
+    #     queryset=BlogEntry.objects.all(),
+    #     widget=forms.HiddenInput(),
+    # )
 
     class Meta:
         model = Picture

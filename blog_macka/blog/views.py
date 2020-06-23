@@ -57,9 +57,16 @@ def create_post(request):
 @login_required
 def create_pic(request):
     if request.method == 'POST':
-        form = PhotoAddForm(request.POST)
+        form = PhotoAddForm(data=request.POST,
+                            files=request.FILES)
         if form.is_valid():
             form.save()
             return render(request, 'blog/create_pic.html',
                           {'form': form,
                            })
+    else:
+        form = PhotoAddForm()
+    return render(request,
+                  'blog/create_pic.html',
+                  {'form': form,
+                   })

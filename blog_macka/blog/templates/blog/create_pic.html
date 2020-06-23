@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}Dodaj zdjęcie{% block title %}
+{% block title %}Dodaj zdjęcie{% endblock %}
 
 {% block content %}
   <h1>Dodaj fotkę do zbioru fotek</h1>
   <p>Korzystając z poniższego formularza, wyślij foktę do bazy danych:</p>
+  <form method="post" class="form-group" enctype="multipart/form-data">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Dodaj obrazek" class="btn btn-success"></p>
+  </form>
+{% endblock %}

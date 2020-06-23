@@ -8,7 +8,7 @@ from django.conf import settings
 class Picture(models.Model):
     title = models.CharField(max_length=250)
     author = models.CharField(max_length=150, blank=True)
-    pic = models.ImageField(upload_to='imgs/', blank=True)
+    pic = models.ImageField(upload_to='imgs/')
 
 
 class BlogEntry(models.Model):

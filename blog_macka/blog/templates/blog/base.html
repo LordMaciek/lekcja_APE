@@ -8,10 +8,12 @@
   <body>
     <div id="header">
       <span class="logo">Blog Maćka</span>
+      <a href="{% url 'pic_list' %}">Galeria fot!</a>
       <span class="user">
         {% if request.user.is_authenticated %}
           Cześć, {{ request.user.first_name }}! |
           <a href="{% url 'create_post' %}">Dodaj wpis</a> |
+          <a href="{% url 'create_pic' %}">Dodaj fotkę</a>
           <a href="{% url 'logout' %}">Wyloguj</a>
         {% else %}
           <a href="{% url 'login' %}">Logowanie</a>
