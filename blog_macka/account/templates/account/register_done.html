@@ -4,6 +4,6 @@
 
 {% block content %}
   <h1>Cześć, {{ new_user.first_name }}!</h1>
-  <p>Fajnie, że się zapisałaś! Teraz możesz <a href="{% url 'login' %}">
+  <p>Fajnie, że się zapisałaś! Teraz możesz <a href="{% url 'account:login' %}">
     zalogować się</a>.</p>
 {% endblock %}

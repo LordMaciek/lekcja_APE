@@ -8,15 +8,15 @@
     <p>Błąd w nazwie i/lub haśle. Spróbuj ponownie!</p>
   {% else %}
     <p>Wpisz dane logowania. Jeśli nie masz konta, możesz
-    <a href="{% url 'register'%}">zarejestrować się</a>.</p>
+    <a href="{% url 'account:register'%}">zarejestrować się</a>.</p>
   {% endif %}
   <div class="login-form">
-    <form action="{% url 'login' %}" method='post'>
+    <form action="{% url 'account:login' %}" method='post'>
       {{ form.as_p }}
       {% csrf_token %}
       <input type='hidden' name='dalej' value="{{ next }}" />
       <p><input type='submit' value='zaloguj'></p>
     </form>
-  <p>Zapomniane hasło? <a href="{% url 'password_reset' %}">Zamów nowe!</a></p>
+  <p>Zapomniane hasło? <a href="{% url 'account:password_reset' %}">Zamów nowe!</a></p>
   </div>
 {% endblock %}
