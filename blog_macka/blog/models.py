@@ -11,7 +11,7 @@ class Picture(models.Model):
     pic = models.ImageField(upload_to='imgs/')
 
     def __str__(self):
-        return self.title
+        return self.pic.url
 
 
 class BlogEntry(models.Model):

@@ -8,7 +8,7 @@
   <br />
   {{ object.body }}
     <div>
-    MAIN PICTURE <img src="{{ main_picture.pic.url }}" alt="">
+    MAIN PICTURE <img src="{{ main_picture.pic.url }}" alt="{{ main_picture.title }}" width=640 height=480>
         {% for pictur in other_pix %}
             <h2>{{ pictur.title }}</h2><br />
             <img src = "{{ pictur.pic.url }}" width=640 height=480/>

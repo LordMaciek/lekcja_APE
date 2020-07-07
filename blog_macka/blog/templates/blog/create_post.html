@@ -4,9 +4,18 @@
 
 {% block content %}
   <h1>Dodaj nowy wpis do Twojego bloga!</h1>
-  <form method="post" class="form-group">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" value="Dodaj wpis" class="btn btn-success"></p>
-  </form>
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        <select name="obrazki" multiple>
+            {% for picture in form.fields.pictures.choices %}
+                    <div style="width: 600px; height: 700px">
+                        <option value="{{ picture.0 }}" style="background-image: url({{ picture.1 }});
+                                width: 600px;
+                                height: 278px;"><br/>
+                        </option>
+                    </div>
+            {% endfor %}
+        </select>
+        <p><input type="submit" value="Dodaj wpis" class="btn btn-success"></p>
+    </form>
 {% endblock %}
